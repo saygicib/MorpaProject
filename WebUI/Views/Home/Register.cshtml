@@ -1,0 +1,66 @@
+﻿@using Entities.Dtos
+@model AddUserDto;
+@{
+    ViewData["Title"] = "Register";
+}
+<br />
+<h1>Register</h1>
+<hr />
+<form asp-controller="Home" asp-action="Register" method="post">
+    <div>
+        <div>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div>
+            <input asp-for="SurName" type="text" class="form-control" placeholder="Surname" />
+            <span asp-validation-for="SurName" class="text-danger"></span>
+        </div>
+        <br />
+        <div>
+            <input asp-for="Email" type="text" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <br />
+        <div>
+            <input asp-for="Password" type="text" class="form-control" placeholder="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <br />
+        <button type="button" id="register" value="register">Create User</button>
+    </div>
+</form>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $("#register").click(function() {
+            console.log("tiklandı");
+            let user = {
+                Name: $("#Name").val(),
+                SurName: $("#SurName").val(),
+                Email: $("#Email").val(),
+                Password: $("#Password").val(),
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Register/',
+                data: user,
+                dataType: 'json',
+                success: function(func) {
+                    if (func == false) {
+                        alert("Bu email adresine kayıtlı kullanıcı zaten var.");
+                    }
+                    else {
+                        alert("Kullanıcı kayıt işlemi tamamlandı.");
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Abstract;
+using Entities.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,21 +13,59 @@ namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserService _userService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserService userService)
         {
             _logger = logger;
+            _userService = userService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(new UserLoginDto());
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View(new UserLoginDto());
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Login(UserLoginDto userDto)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (_userService.Login(userDto))
+                {
+                    return View();
+                }
+                return View(userDto);
+            }
+            return View(userDto);
+
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View(new AddUserDto());
+        }
+        
+        [HttpPost]
+        public IActionResult Register(AddUserDto userDto)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userService.AddUser(userDto))
+                {
+                    return Json(true);
+                }
+                return Json(false);
+            }
+            return View(userDto);
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

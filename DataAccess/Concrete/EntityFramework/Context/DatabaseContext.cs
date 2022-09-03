@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true).Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlServer"));
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

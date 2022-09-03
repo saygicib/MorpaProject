@@ -1,8 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@*@using Entities.Dtos
+@model UserLoginDto
+@{
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<br />
+<h1>Login</h1>
+<hr />
+<div>
+    <input type="text" class="form-control" id="email" placeholder="Email"/>
+    <br />
+    <input type="text" class="form-control" id="password" placeholder="Password"/>
+    <br />
+    <input type="submit" id="login" value="Login"/>
 </div>
+*@
+
+
