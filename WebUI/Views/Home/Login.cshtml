@@ -8,6 +8,10 @@
 <hr />
 <div class="row">
     <div class="col-md-8">
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <div class="text-danger">@ViewData["ErrorMessage"]</div>
+        }
         <form asp-controller="Home" asp-action="Login" method="post">
             <div class="form-group row">
                 <label asp-for="Email" class="col-md-2 col-form-label">Email</label>
@@ -31,3 +35,4 @@
         </form>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

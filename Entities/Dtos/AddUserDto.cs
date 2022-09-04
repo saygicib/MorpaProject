@@ -7,7 +7,6 @@ namespace Entities.Dtos
 {
     public class AddUserDto
     {
-
         [Required]
         [StringLength(int.MaxValue,MinimumLength =3,ErrorMessage ="İsim en az 3 karakter olmalıdır.")]
         public string Name { get; set; }

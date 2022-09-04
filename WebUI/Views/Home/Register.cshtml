@@ -6,31 +6,29 @@
 <br />
 <h1>Register</h1>
 <hr />
-<form asp-controller="Home" asp-action="Register" method="post">
+<div>
     <div>
-        <div>
-            <input asp-for="Name" type="text" class="form-control" placeholder="Name" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <br />
-        <div>
-            <input asp-for="SurName" type="text" class="form-control" placeholder="Surname" />
-            <span asp-validation-for="SurName" class="text-danger"></span>
-        </div>
-        <br />
-        <div>
-            <input asp-for="Email" type="text" class="form-control" placeholder="Email" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <br />
-        <div>
-            <input asp-for="Password" type="text" class="form-control" placeholder="Password" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <br />
-        <button type="button" id="register" value="register">Create User</button>
+        <input asp-for="Name" value="@Model.Name" type="text" class="form-control" placeholder="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-</form>
+    <br />
+    <div>
+        <input asp-for="SurName" value="@Model.SurName" type="text" class="form-control" placeholder="Surname" />
+        <span asp-validation-for="SurName" class="text-danger"></span>
+    </div>
+    <br />
+    <div>
+        <input asp-for="Email" value="@Model.Email" type="text" class="form-control" placeholder="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <br />
+    <div>
+        <input asp-for="Password" value="@Model.Password" type="text" class="form-control" placeholder="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="button" id="register" value="register">Create User</button>
+</div>
 
 
 @section scripts{
@@ -59,6 +57,8 @@
             });
         });
     </script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
 
 

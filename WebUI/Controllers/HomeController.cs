@@ -31,7 +31,6 @@ namespace WebUI.Controllers
         {
             return View(new UserLoginDto());
         }
-
         [HttpPost]
         public IActionResult Login(UserLoginDto userDto)
         {
@@ -39,8 +38,9 @@ namespace WebUI.Controllers
             {
                 if (_userService.Login(userDto))
                 {
-                    return View();
+                    return RedirectToAction("Index","Home");
                 }
+                ViewData["ErrorMessage"] = "Kullanıcı adı veya şifre hatalı.";
                 return View(userDto);
             }
             return View(userDto);
